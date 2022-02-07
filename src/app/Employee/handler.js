@@ -1,3 +1,4 @@
+const Employee = require('../../entity/Employee');
 var empServices = require('./services')
 addEmployee = async (req, res) => {
     if (!req.body)
@@ -33,8 +34,8 @@ updateEmployee = async (req, res) => {
             req.body.email && req.body.phone != null | '') {
             try {
                 let id = req.params.id;
-                console.log('id',req.params.id,req.body)
-                let newEmployee = await empServices.updateEmployeeById(req.body,id);
+                console.log('id', req.params.id, req.body)
+                let newEmployee = await empServices.updateEmployeeById(req.body, id);
                 console.log("aftercoming ", newEmployee);
                 res.status(200).send(newEmployee);
             }
@@ -48,18 +49,49 @@ updateEmployee = async (req, res) => {
 
 }
 deleteEmployee = async (req, res) => {
-
+    if (!req.body && req.params.id)
+        res.status(400).send('Bad Request')
+    else {
+        try {
+            let id = req.params.id;
+            let deletedEmployee = await empServices.deleteEmployeeById(id);
+            res.send(deletedEmployee).status(200)
+        }
+        catch (err) {
+            res.send(err).status(404)
+        }
+    }
 }
 getEmployeesList = async (req, res) => {
 
-}
-getEmployeeById = async (req, res) => {
+    try {
+        let id = req.params.id;
+        let employeeList = await empServices.getListofAllEmployee();
+        res.send(employeeList).status(200)
+    }
+    catch (err) {
+        res.send(err).status(404)
+    }
 
+}
+getEmployee = async (req, res) => {
+    if (!req.body && req.params.id)
+    res.status(400).send('Bad Request')
+else {
+    try {
+        let id = req.params.id;
+        let oneEmployee = await empServices.getEmployeeById(id);
+        res.send(oneEmployee).status(200)
+    }
+    catch (err) {
+        res.send(err).status(404)
+    }
+}
 }
 module.exports = {
     addEmployee,
     updateEmployee,
     deleteEmployee,
-    getEmployeeById,
+    getEmployee,
     getEmployeesList
 }
