@@ -1,6 +1,6 @@
 db =  {
     HOST: "localhost",
-    DATABASE: "office",
+    DATABASE: "performancemanager",
     USERNAME: "root",
     PASSWORD: "MySqlRoot12345",
     DIALECT: "mysql",

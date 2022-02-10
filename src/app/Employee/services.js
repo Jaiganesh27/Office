@@ -87,4 +87,4 @@ getEmployeeById = async (id) => {
     }
 }
 
-module.exports = { addNewEmployee, updateEmployeeById, deleteEmployeeById, getListofAllEmployee, getEmployeeById };
+export { addNewEmployee, updateEmployeeById, deleteEmployeeById, getListofAllEmployee, getEmployeeById };
