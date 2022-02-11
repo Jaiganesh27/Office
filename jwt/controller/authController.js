@@ -1,6 +1,6 @@
 const { userValidateSchema } = require('../entity/user_validation')
 const entity = require('../entity');
-const { signAccessToken, signRefreshToken } = require('../jwt_helper/token');
+const { signAccessToken, signRefreshToken, verifyAccessToken } = require('../jwt_helper/token');
 const { hashPassword } = require('../entity/encrypt_pass');
 const user = entity.user;
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
 
     login: async (req, res) => {
         // console.log('used list is there!');
-         authToken = req.headers['authorization']
+        //  authToken = req.headers['authorization']
         //  console.log("tokenauthfromheader",authToken);
        try{
            userValid = await user.findOne({
@@ -43,11 +43,12 @@ module.exports = {
            if(!userValid){
                res.status(400).json({message:'UNAUTHORIZED REQUEST'});
            }
-             userValid
+           accessToken =  await signAccessToken(userValid.id);
+           refreshToken = await signRefreshToken(userValid.id);     
        }
        catch(err){
-
-       }
+          res.status(500).json({message:err})
+       } 
     },
 
     refreshToken: async (req, res) => {
