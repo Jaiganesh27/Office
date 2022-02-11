@@ -1,0 +1,15 @@
+{
+    "PORT":4000,
+    "ACCESS_SECRET_KEY":"fg",
+    "REFRESH_SECRET_KEY": "dggg",
+    "ACCESS_KEY_EXPTIME":120,
+    "REFRESH_KEY_EXPTIME":3600 ,
+
+
+
+    "host": "localhost",
+    "database": "JwtLearning",
+    "username": "root",
+    "password": "MySqlRoot12345",
+    "dialect": "mysql"
+}
