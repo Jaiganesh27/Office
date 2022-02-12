@@ -6,22 +6,22 @@ var sequelize = new Sequelize(
     dbConfig.username,
     dbConfig.password,
     {
-        host:dbConfig.host,
-        dialect:dbConfig.dialect
+        host: dbConfig.host,
+        dialect: dbConfig.dialect
     });
 
-sequelize.authenticate().then(()=>{
+sequelize.authenticate().then(() => {
     console.log('database connected!');
-}).catch(err=>{
-    console.log(err,'err');
-}) 
+}).catch(err => {
+    console.log(err, 'err');
+})
 db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.sequelize.sync();
 
-db.user = require('./user')(db.sequelize,Sequelize)
+db.user = require('./user')(db.sequelize, Sequelize)
 
 
 module.exports = db;

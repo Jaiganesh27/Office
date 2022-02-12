@@ -10,8 +10,8 @@ app.use(express.json());
 
 
 
-app.get('/',verifyAccessToken,(req,res,next)=>{
-  console.log("Hi You're in a protected homepage");
+app.get('/',(req,res)=>{
+  console.log("Hi You're in  homepage");
   res.json({ message:'Welcome to Home Page'});
 })
 

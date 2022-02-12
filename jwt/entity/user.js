@@ -12,9 +12,9 @@ module.exports = (sequelize, Sequelize) => {
             field: 'user_name',
             type: Sequelize.DataTypes.STRING(50),
         },
-        email:{
-            field:'email',
-            type:Sequelize.DataTypes.STRING(50),
+        email: {
+            field: 'email',
+            type: Sequelize.DataTypes.STRING(50),
         },
         password: {
             field: 'password',
